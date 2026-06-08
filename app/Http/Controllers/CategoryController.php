@@ -10,6 +10,5 @@ class CategoryController extends Controller
     {
         $message = "Hello from Server";
         return inertia('Category/Index', ['message' => $message]);
-
     }
 }
