@@ -9,5 +9,6 @@ class CategoryController extends Controller
     public function index()
     {
         return inertia('Category/Index');
+        
     }
 }

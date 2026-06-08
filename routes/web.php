@@ -15,5 +15,6 @@ Route::get('dashboard', function () {
 
 Route::get('categories', [CategoryController::class, 'index'])->name('categories');
 
+
 require __DIR__.'/settings.php';
 require __DIR__.'/auth.php';
