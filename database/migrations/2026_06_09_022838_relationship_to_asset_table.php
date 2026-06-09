@@ -12,7 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('assets', function (Blueprint $table) {
-             // Add category_id column and foreign key constraint
+
+            // Add category_id column and foreign key constraint
             // ->constrained() will assume 'categories' table and 'id' column
             // ->onDelete('set null') means if a category is deleted, assets in that category will have category_id set to null
             $table->foreignId('category_id')
