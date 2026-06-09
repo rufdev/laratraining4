@@ -5,7 +5,7 @@ import NavUser from '@/components/NavUser.vue';
 import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@/components/ui/sidebar';
 import { type NavItem } from '@/types';
 import { Link } from '@inertiajs/vue3';
-import { BookOpen, Folder, LayoutGrid, ChartBarStacked  } from 'lucide-vue-next';
+import { BookOpen, Folder, LayoutGrid, ChartBarStacked, Laptop, MapPinHouse, Factory } from 'lucide-vue-next';
 import AppLogo from './AppLogo.vue';
 
 const mainNavItems: NavItem[] = [
@@ -15,10 +15,26 @@ const mainNavItems: NavItem[] = [
         icon: LayoutGrid,
     },
     {
+        title: 'Asset',
+        url: '/assets',
+        icon: Laptop,
+    },
+    {
         title: 'Category',
         url: '/categories',
         icon: ChartBarStacked,
     },
+    {
+        title: 'Location',
+        url: '/locations',
+        icon: MapPinHouse,
+    },
+    {
+        title: 'Manufacturer',
+        url: '/manufacturers',
+        icon: Factory,
+    },
+    
 ];
 
 const footerNavItems: NavItem[] = [

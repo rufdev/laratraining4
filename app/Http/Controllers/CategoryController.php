@@ -8,7 +8,7 @@ class CategoryController extends Controller
 {
     public function index()
     {
-        $message = "Hello from Server";
+        $message = "Hello From Category Controller";
         return inertia('Category/Index', ['message' => $message]);
     }
 }
