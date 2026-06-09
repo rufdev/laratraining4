@@ -20,7 +20,6 @@ Route::middleware(['auth', 'verified', 'role:super_admin'])->group(function () {
 });
 
 Route::middleware(['auth', 'verified', 'role:super_admin,inventory_manager'])->group(function () {
-    
     Route::get('manufacturers', [ManufacturerController::class, 'index'])->name('manufacturers.index');
     Route::get('locations', [LocationController::class, 'index'])->name('locations.index');
 });
