@@ -4,15 +4,13 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreCategoryRequest extends FormRequest
+class StoreLocationRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        // For example: return auth()->user()->can('create', Category::class);
-        // Or simply true if no specific authorization check is needed here
         return true;
     }
 
@@ -24,8 +22,8 @@ class StoreCategoryRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string|min:3|max:255|unique:categories,name', // Added unique rule for creation
-            'description' => 'nullable|string|max:500',
+            'name' => 'required|string|min:3|max:255|unique:locations,name', // Added unique rule for creation
+            'address' => 'required|string|max:500',
         ];
     }
 
@@ -33,7 +31,7 @@ class StoreCategoryRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'name.unique' => 'A category with this name already exists.',
+            'name.unique' => 'A location with this name already exists.',
         ];
     }
 }
