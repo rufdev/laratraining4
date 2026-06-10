@@ -22,6 +22,8 @@ Route::middleware(['auth', 'verified', 'role:super_admin'])->group(function () {
 
 Route::middleware(['auth', 'verified', 'role:super_admin,inventory_manager'])->group(function () {
     Route::resource('manufacturers', ManufacturerController::class)->except(['create', 'edit']);
+
+    Route::post('/locations/list', [LocationController::class, 'list'])->name('locations.list');
     Route::resource('locations', LocationController::class)->except(['create', 'edit']);
 });
 

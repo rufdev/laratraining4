@@ -6,6 +6,7 @@ use App\Models\Location;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreLocationRequest;
 use App\Http\Requests\UpdateLocationRequest;
+use App\Http\Resources\LocationResource;
 
 class LocationController extends Controller
 {
@@ -16,6 +17,31 @@ class LocationController extends Controller
     {
         return inertia('Location/Index');
     }
+
+     public function list(Request $request)
+    {
+        $query = Location::query();
+
+        if ($request->has('searchtext') && !empty($request->input('searchtext'))) {
+            $search = $request->input('searchtext');
+            $query->whereLike('name', '%' . $search . '%')
+            ->orWhereLike('address', '%' . $search . '%');
+        }
+
+         if ($request->has('sort_field') && $request->has('sort_direction')) {
+            $query->orderBy($request->input('sort_field'), $request->input('sort_direction'));
+        } else {
+            $query->orderBy('name', 'asc'); // Default sorting
+        }
+
+        $locations = LocationResource::collection(
+            $query->orderBy('name', 'asc')->paginate($request->input('per_page', 5))
+        );
+
+        
+        return $locations;
+    }
+
 
    /**
      * Store a newly created resource in storage.
