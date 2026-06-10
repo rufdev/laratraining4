@@ -18,7 +18,7 @@ class LocationController extends Controller
         return inertia('Location/Index');
     }
 
-     public function list(Request $request)
+    public function list(Request $request)
     {
         $query = Location::query();
 
@@ -28,7 +28,7 @@ class LocationController extends Controller
             ->orWhereLike('address', '%' . $search . '%');
         }
 
-         if ($request->has('sort_field') && $request->has('sort_direction')) {
+        if ($request->has('sort_field') && $request->has('sort_direction')) {
             $query->orderBy($request->input('sort_field'), $request->input('sort_direction'));
         } else {
             $query->orderBy('name', 'asc'); // Default sorting
