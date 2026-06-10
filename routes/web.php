@@ -29,6 +29,7 @@ Route::middleware(['auth', 'verified', 'role:super_admin,inventory_manager'])->g
 });
 
 Route::middleware(['auth', 'verified', 'role:super_admin,inventory_user'])->group(function () {
+    Route::post('/assets/list', [AssetController::class, 'list'])->name('assets.list');
     Route::resource('assets', AssetController::class)->except(['create', 'edit']);
 });
 

@@ -18,7 +18,7 @@ class ManufacturerController extends Controller
         return inertia('Manufacturer/Index');
     }
     
-     public function list(Request $request)
+    public function list(Request $request)
     {
         $query = Manufacturer::query();
 

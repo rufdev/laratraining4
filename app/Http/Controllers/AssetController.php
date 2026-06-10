@@ -6,6 +6,7 @@ use App\Models\Asset;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreAssetRequest;
 use App\Http\Requests\UpdateAssetRequest;
+use App\Http\Resources\AssetResource;
 
 class AssetController extends Controller
 {
@@ -15,6 +16,29 @@ class AssetController extends Controller
     public function index()
     {
         return inertia('Asset/Index');
+    }
+
+    public function list(Request $request)
+    {
+        $query = Asset::query();
+
+        if ($request->has('searchtext') && !empty($request->input('searchtext'))) {
+            $search = $request->input('searchtext');
+            $query->whereLike('name', '%' . $search . '%');
+        }
+
+        if ($request->has('sort_field') && $request->has('sort_direction')) {
+            $query->orderBy($request->input('sort_field'), $request->input('sort_direction'));
+        } else {
+            $query->orderBy('name', 'asc'); // Default sorting
+        }
+
+        $assets = AssetResource::collection(
+            $query->orderBy('name', 'asc')->paginate($request->input('per_page', 5))
+        );
+
+        
+        return $assets;
     }
 
      /**
