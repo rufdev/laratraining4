@@ -1,8 +1,9 @@
 import type { ClassValue } from "clsx"
 import { clsx } from "clsx"
 import { twMerge } from "tailwind-merge"
-import { Updater } from '@tanstack/vue-table';
+import { Updater } from '@tanstack/vue-table'
 import { Ref } from 'vue';
+
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
