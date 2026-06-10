@@ -66,6 +66,13 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        try {
+            $category = Category::findOrFail($category->id); // Find the category or throw a 404 error
+            $category->delete(); // Delete the category
+
+            return response()->json(['message' => 'Category deleted successfully.'], 200);
+        } catch (\Exception $e) {
+            return response()->json(['message' => 'Failed to delete category.'], 500);
+        }
     }
 }
