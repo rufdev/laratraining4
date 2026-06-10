@@ -1,11 +1,8 @@
 <script setup lang="ts">
     import AppLayout from '@/layouts/AppLayout.vue';
-    defineProps({
-        message: String
-    });
 </script>
 <template>
     <AppLayout>
-        {{ message }}
+        Asset Page
     </AppLayout>
 </template>
