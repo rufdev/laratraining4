@@ -9,6 +9,8 @@ use App\Models\Manufacturer;
 use App\Models\Asset;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
+use App\UserRoleEnum;
 
 class DatabaseSeeder extends Seeder
 {
@@ -19,13 +21,14 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-        // User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        User::factory()->create([
+            'name' => 'Rufino John Aguilar',
+            'email' => 'aguilarufino@gmail.com',
+            'password' => Hash::make('password'), 
+            'role' => UserRoleEnum::SUPER_ADMIN,
+        ]);
 
-        // $this->call(UserSeeder::class);
-
+        $this->call(UserSeeder::class);
         User::factory(20)->create();
         Category::factory(10)->create();
         Location::factory(10)->create();
