@@ -12,7 +12,7 @@ import { Head } from '@inertiajs/vue3'; // Head component for setting the page t
 /* Import Utilities */
 import { toTypedSchema } from '@vee-validate/zod'; // Utility for converting Zod schemas to Vee-Validate schemas
 import axios from 'axios'; // HTTP client for API requests
-import { ArrowUpDown, Plus } from 'lucide-vue-next'; // Icons for UI
+import { ArrowUpDown, Plus, Pencil, Trash } from 'lucide-vue-next'; // Icons for UI
 import { useForm } from 'vee-validate'; // Form validation library
 import { h, ref } from 'vue'; // Vue composition API utilities
 import { toast } from 'vue-sonner'; // Toast notifications
@@ -87,15 +87,36 @@ const columns: ColumnDef<Category>[] = [
         cell: ({ row }) => {
             const rowitem = row.original;
 
+            // return h(
+            //     'div',
+            //     { class: 'relative' },
+            //     h(ReusableDropDownAction, {
+            //         rowitem,
+            //          onEdit: handleEdit, // Edit handler
+            //          onDelete: openDeleteDialog, // Delete handler
+            //     }),
+            // );
             return h(
                 'div',
-                { class: 'relative' },
-                h(ReusableDropDownAction, {
-                    rowitem,
-                     onEdit: handleEdit, // Edit handler
-                     onDelete: openDeleteDialog, // Delete handler
-                }),
+                { class: 'flex items-center gap-2'},
+                    [
+                        h(Button, {
+                            variant:'outline',
+                            size: 'sm',
+                            onClick: () => handleEdit(rowitem.id), // Edit handler
+                        },
+                        () => [h(Pencil, { class: 'text-yellow-300' })]
+                    ),
+                        h(Button, {
+                            size: 'sm',
+                            variant: 'destructive',
+                            onClick: () => openDeleteDialog(rowitem.id), // Delete handler
+                        },
+                        () => [h(Trash, { class: 'text-red-500' })]
+                    )
+                    ]
             );
+
         },
     },
 ];

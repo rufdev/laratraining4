@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { Button } from '@/components/ui/button';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
-import { MoreHorizontal } from 'lucide-vue-next';
+import { MoreHorizontal, Pencil, Trash2 } from 'lucide-vue-next';
 
 const props = defineProps({
     rowitem: Object,
@@ -43,8 +43,8 @@ const deleteItem = (id: number) => {
         Copy category ID
       </DropdownMenuItem>
       <DropdownMenuSeparator /> -->
-            <DropdownMenuItem class="text-yellow-300" @click="editItem(rowitem?.id)">Edit</DropdownMenuItem>
-            <DropdownMenuItem class="text-red-300" @click="deleteItem(rowitem?.id)">Delete</DropdownMenuItem>
+            <DropdownMenuItem class="text-yellow-300" @click="editItem(rowitem?.id)"><Pencil />Edit</DropdownMenuItem>
+            <DropdownMenuItem class="text-red-300" @click="deleteItem(rowitem?.id)"><Trash2 />Delete</DropdownMenuItem>
         </DropdownMenuContent>
     </DropdownMenu>
 </template>
