@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 use App\Http\Requests\StoreAssetRequest;
 use App\Http\Requests\UpdateAssetRequest;
 use App\Http\Resources\AssetResource;
+use App\Models\Category;
+use App\Models\Location;
+use App\Models\Manufacturer;
+use App\Models\User;
 
 class AssetController extends Controller
 {
@@ -15,7 +19,17 @@ class AssetController extends Controller
      */
     public function index()
     {
-        return inertia('Asset/Index');
+        $categories = Category::orderBy('name', 'asc')->get(['id', 'name']);
+        $locations = Location::orderBy('name', 'asc')->get(['id', 'name']);
+        $manufacturers = Manufacturer::orderBy('name', 'asc')->get(['id', 'name']);
+        $users = User::orderBy('name', 'asc')->get(['id', 'name']);
+
+        return inertia('Asset/Index', [
+            'categories' => $categories,
+            'locations' => $locations,
+            'manufacturers' => $manufacturers,
+            'users' => $users,
+        ]);
     }
 
     public function list(Request $request)
