@@ -1,33 +1,22 @@
 <script setup lang="ts">
-import type { AlertDialogActionProps } from "reka-ui"
-import type { HTMLAttributes } from "vue"
-import type { ButtonVariants } from '@/components/ui/button'
-import { reactiveOmit } from "@vueuse/core"
-import { AlertDialogAction } from "reka-ui"
-import { cn } from "@/lib/utils"
+import type { AlertDialogActionProps } from 'radix-vue'
+import type { HTMLAttributes } from 'vue'
 import { buttonVariants } from '@/components/ui/button'
+import { cn } from '@/lib/utils'
+import { AlertDialogAction } from 'radix-vue'
+import { computed } from 'vue'
 
-const props = withDefaults(
-  defineProps<AlertDialogActionProps & {
-    class?: HTMLAttributes["class"]
-    variant?: ButtonVariants["variant"]
-    size?: ButtonVariants["size"]
-  }>(),
-  {
-    variant: "default",
-    size: "default",
-  },
-)
+const props = defineProps<AlertDialogActionProps & { class?: HTMLAttributes['class'] }>()
 
-const delegatedProps = reactiveOmit(props, "class", "variant", "size")
+const delegatedProps = computed(() => {
+  const { class: _, ...delegated } = props
+
+  return delegated
+})
 </script>
 
 <template>
-  <AlertDialogAction
-    data-slot="alert-dialog-action"
-    v-bind="delegatedProps"
-    :class="cn('', buttonVariants({ variant, size }), props.class)"
-  >
+  <AlertDialogAction v-bind="delegatedProps" :class="cn(buttonVariants(), props.class)">
     <slot />
   </AlertDialogAction>
 </template>

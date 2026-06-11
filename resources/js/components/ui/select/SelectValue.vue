@@ -1,15 +1,12 @@
 <script setup lang="ts">
-import type { SelectValueProps } from "reka-ui"
-import { SelectValue } from "reka-ui"
+import type { SelectValueProps } from 'radix-vue'
+import { SelectValue } from 'radix-vue'
 
 const props = defineProps<SelectValueProps>()
 </script>
 
 <template>
-  <SelectValue
-    data-slot="select-value"
-    v-bind="props"
-  >
+  <SelectValue v-bind="props">
     <slot />
   </SelectValue>
 </template>

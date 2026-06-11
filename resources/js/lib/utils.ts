@@ -1,6 +1,5 @@
-import type { ClassValue } from "clsx"
-import { clsx } from "clsx"
-import { twMerge } from "tailwind-merge"
+import { type ClassValue, clsx } from 'clsx'
+import { twMerge } from 'tailwind-merge'
 import { Updater } from '@tanstack/vue-table';
 import { Ref } from 'vue';
 
